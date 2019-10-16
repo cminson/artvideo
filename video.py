@@ -1,8 +1,9 @@
 #
-# An example of ML transfer learning.
-# Interpret a vidoe with given style input 
-#
 # Author:  Christopher Minson
+# Article: https://www.christopherminson.com/articles/artvideo.html
+#
+# Interpret a video with given style input 
+#
 #
 import os
 import sys
@@ -11,12 +12,9 @@ import time
 import subprocess
 
 import numpy as np
-import matplotlib as mpl
-import matplotlib.image as img
-import matplotlib.pylab as plt
+import matplotlib.image
 import tensorflow as tf
 import tensorflow_hub as hub
-from PIL import Image
 
 # the dnn we use, courtesy of google
 HUB_URL = 'https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/1'
@@ -32,25 +30,24 @@ MAX_IMAGE_DIM = 1024
 MAX_FRAMES = 30 * 60
 VIDEO_FPS = 30.0
 
-
 #
 # normalize an image for usage by dnn
 #
 def load_image(path_image):
 
-    img = tf.io.read_file(path_image)
-    img = tf.image.decode_image(img, channels=3)
-    img = tf.image.convert_image_dtype(img, tf.float32)
+    image = tf.io.read_file(path_image)
+    image = tf.image.decode_image(image, channels=3)
+    image = tf.image.convert_image_dtype(image, tf.float32)
 
-    shape = tf.cast(tf.shape(img)[:-1], tf.float32)
+    shape = tf.cast(tf.shape(image)[:-1], tf.float32)
     long_dim = max(shape)
     scale = MAX_IMAGE_DIM / long_dim
 
     new_shape = tf.cast(shape * scale, tf.int32)
 
-    img = tf.image.resize(img, new_shape)
-    img = img[tf.newaxis, :]
-    return img
+    image = tf.image.resize(image, new_shape)
+    image = image[tf.newaxis, :]
+    return image
 
 #
 # for the given input video, generate the video's frames and store in tmp
@@ -72,9 +69,9 @@ def generate_frames(path_input_video, path_image_style):
 
         image = load_image(path_frame)
         results = hub_module(tf.constant(image), tf.constant(image_style))
-        bitmap = results[0]
-        image = tf.squeeze(bitmap, axis=0)
-        mpl.image.imsave(path_converted_frame, image) 
+
+        image = tf.squeeze(results[0], axis=0)
+        matplotlib.image.imsave(path_converted_frame, image) 
         print(count, path_frame, path_converted_frame)
 
 #

@@ -1,20 +1,3 @@
-#python video.py dam1.m4v abo2.jpg
-#python video.py dam1.m4v ink1.jpg
-#python video.py dam1.m4v escher3.jpg
-#python video.py dam1.m4v monet1.jpg
-#python video.py graffiti.m4v abo2.jpg
-#python video.py graffiti.m4v ink1.jpg
-#python video.py graffiti.m4v escher3.jpg
-#python video.py graffiti.m4v monet1.jpg
-#python video.py parkpath2.m4v abo2.jpg
-python video.py walkway1.m4v abo2.jpg
-python video.py walkway1.m4v ink1.jpg
-python video.py walkway1.m4v escher3.jpg
-python video.py walkway1.m4v monet1.jpg
-
-
-
-
-
-
-
+python video.py waterfall01.m4v ink1.jpg
+python video.py waterfall01.m4v abstract.jpg
+python video.py waterfall01.m4v cubist.jpg
