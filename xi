@@ -1,1 +1,1 @@
-python3 image.py mone1.jpg me.jpg
+python3 image.py me.jpg monet1.jpg

@@ -16,7 +16,7 @@ import tensorflow_hub as hub
 
 PATH_IMAGES = './images/'
 PATH_STYLES = './styles/'
-PATH_OUTPUTS = './output/'
+PATH_OUTPUTS = './outputs/'
 MAX_IMAGE_DIM = 1024
 
 
@@ -50,6 +50,7 @@ if __name__ == '__main__':
     name_original = sys.argv[1]
     name_style = sys.argv[2]
     print(f'converting: {name_original} {name_style}')
+
 
     print("TF Version: ", tf.__version__)
     print("TF-Hub version: ", hub.__version__)
