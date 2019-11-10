@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     name_original = sys.argv[1]
     name_style = sys.argv[2]
-    print(f'converting: {name_original} {name_style}')
+    print('converting: {name_original} {name_style}')
 
 
     print("TF Version: ", tf.__version__)
@@ -70,5 +70,5 @@ if __name__ == '__main__':
     output_name = os.path.splitext(name_original)[0] + '.' + os.path.splitext(name_style)[0] + '.jpg'
     matplotlib.image.imsave(PATH_OUTPUTS + output_name, image)
 
-    print(f'result: {PATH_OUTPUTS + output_name}')
+    print('result: {PATH_OUTPUTS + output_name}')
 
